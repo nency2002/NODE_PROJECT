@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin_Update</title>
+</head>
+<body>
+    <!-- header -->
+    <%- include("nav") %>
+    <!-- form -->
+   <div class="container">
+    <form action="/Product/Update/:id" method="post"  id="updateform">
+        <h2>Product Update</h2>
+        <div class="field">
+            <input type="text" name="title" id="title" placeholder="Title"  value="<%= udata.title %>"/>
+        </div>
+        <div class="field">
+            <input type="text" name="desc" id="desc"  placeholder="description" value="<%= udata.description %>"/>
+        </div>
+        <div class="field mt">
+            <input type="number" name="price" id="price" placeholder="price"  value="<%= udata.price %>"/>
+        </div>
+        <div class="field">
+            <input type="url" name="image" id="image" placeholder="image" value="<%= udata.image %>" />
+        </div>
+        <div class="field">
+            <input type="text" name="category" id="category" placeholder="category" value="<%= udata.category %>"  />
+        </div>
+        <button type="submit" class="mt">post</button>
+    </form>
+   </div>
+    
+</body>
+<script>
+     let url = window.location.href.split("/");
+    console.log(url)
+    let id = url[url.length - 1]
+    console.log(id)
+
+     document.getElementById("updateform").addEventListener("submit", (e) => {
+        e.preventDefault();
+        const udata = {
+            title: document.getElementById("title").value,
+            desc: document.getElementById("desc").value,
+            price: document.getElementById("price").value,
+            image: document.getElementById("image").value,
+            category: document.getElementById("category").value
+        }
+        console.log(udata)
+        fetch(`/Product/Edit/${id}`, {
+            method: "PATCH",
+            headers: { "Content-type": "application/json" },
+            body: JSON.stringify(udata,
+            alert('Update successfully'),
+            title.value="",
+            desc.value="",
+            price.value="",
+            image.value="",
+            category.value="",
+            window.location.href = "/Product/Home",
+            )
+        });
+    })
+</script>
+</html>
